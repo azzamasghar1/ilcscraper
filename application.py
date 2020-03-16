@@ -19,6 +19,7 @@ else:
 option = webdriver.ChromeOptions()
 
 directory = os.getcwd()
+option.add_argument("--no-sandbox")
 option.add_argument("--headless")
 option.add_argument("window-size=1920,1080")
 driver = webdriver.Chrome(executable_path=chromeDriver, options=option)
@@ -26,6 +27,8 @@ driver = webdriver.Chrome(executable_path=chromeDriver, options=option)
 
 @app.route('/login/<login>/<password>')
 def login(login, password):
+    """ print('Hello')
+    return jsonify({'status': 'success'}) """
     # -------------------------------------------------------------------
 
     url = 'https://ebiz.licindia.in/AgentPortal/#Login'
@@ -359,3 +362,5 @@ def commerceData(fromDate, toDate):
     else:
         return jsonify({'status': 'failed'})
 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
